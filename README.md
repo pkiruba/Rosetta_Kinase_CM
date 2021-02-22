@@ -1,5 +1,10 @@
 # Rosetta Kinase CM
 
+<figure class="image">
+  <img src="pipeline.png">
+  <figcaption>Figure: Overview of Rosetta Kinase CM pipeline</figcaption>
+</figure>
+
 ## Dependency
 * Tested with [Python 3.7](https://www.python.org/downloads/) (Pandas) 
 * [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite 
@@ -7,7 +12,7 @@
 
 Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approach,
 
-## 1. Conformers generation and ligand alignment (modeling_script.py)
+## 1. Conformer generation and ligand alignment (modeling_script.py)
 * First, the maximum number of conformers will be generated for a given SMILES using OMEGA. The output will be a single SDF file with the maximum number of conformers.
 * Second, the single SDF file will be used for the alignment of a query (Molecule of interest) and database (in-house active kinase ligand template library) molecules using ROCS. The output will be each template aligned query molecule.
 * Third, combining the report files of each template aligned query molecule into a single report file.
@@ -20,7 +25,7 @@ python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp
 ## Output folder should contain these files
 
 ```
-.
+2W1C_A_L0C
 ├── 2W1C_A.fasta
 ├── 2W1C_A_L0C.pdb
 ├── L0C.smi
