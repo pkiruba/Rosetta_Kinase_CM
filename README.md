@@ -1,8 +1,9 @@
-# Rosetta Kinase CM.
+# Rosetta Kinase CM
 
 ## Dependency
-* [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite; 
-* [OpenEye](https://www.eyesopen.com/) Software Suite;
+* Tested with [Python 3.7] (https://www.python.org/downloads/)
+* [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite 
+* [OpenEye](https://www.eyesopen.com/) Software Suite
 
 Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approach,
 
@@ -33,4 +34,9 @@ python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp
 ## 7. Analysis (analysis_2.py)
 * The analysis process is same as step 4.
 * The top 1 model will be reported as the best prediction. 
-For the ROCS, EMBOSS, and PyRosetta, I use parallel computing so I tried to keep those scripts separately.
+
+# Contact
+Reach me at kirubanpk@gmail.com
+
+# License
+This project uses the following license: MIT License
