@@ -1,5 +1,9 @@
 # Rosetta Kinase CM.
 
+## Dependency
+* [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite; 
+* [OpenEye](https://www.eyesopen.com/) Software Suite;
+
 Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approach,
 
 ## 1. Conformers generation and ligand alignment (modeling_script.py)
