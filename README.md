@@ -16,6 +16,25 @@ Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approa
 ```
 python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp_lig /Users/kiruba/Desktop/rosetta_kinase_cm/template_ligand_library
 ```
+
+## Output folder should contain these files
+
+```
+.
+├── 2W1C_A.fasta
+├── 2W1C_A_L0C.pdb
+├── L0C.smi
+├── OMEGA
+│   ├── L0C_omega.log
+│   ├── L0C_omega.parm
+│   ├── L0C_omega.rpt
+│   ├── L0C_omega.sdf
+│   └── L0C_omega_status.txt
+├── ROCS [7787 entries exceeds filelimit, not opening dir]
+├── mol2params [200 entries exceeds filelimit, not opening dir]
+└── top_100_conf [200 entries exceeds filelimit, not opening dir]
+```
+
 ## 2. Sequence alignment and protein modeling (new_protein_modeling.py)
 * First, target-template sequence alignment will be performed using in-house active kinase sequence template library (EMBOSS Needleman-Wunsch algorithm)
 * Second, selection of top hit templates will be applied using sequence and ligand similarity approach (defined as Template Score). Based on this approach, the top 10 templates for the given sequence will be selected.
