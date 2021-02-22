@@ -1,7 +1,7 @@
 # Rosetta Kinase CM
 
 ## Dependency
-* Tested with [Python 3.7] (https://www.python.org/downloads/)
+* Tested with [Python 3.7](https://www.python.org/downloads/)
 * [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite 
 * [OpenEye](https://www.eyesopen.com/) Software Suite
 
