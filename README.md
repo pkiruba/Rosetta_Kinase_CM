@@ -8,7 +8,9 @@
 ## Dependency
 * Tested with [Python 3.7](https://www.python.org/downloads/) (Pandas) 
 * [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite 
+* [PyRosetta](http://www.pyrosetta.org/) Software Suite
 * [OpenEye](https://www.eyesopen.com/) Software Suite
+* [EMBOSS](http://emboss.open-bio.org/html/use/ch02s07.html) Software Suite
 
 Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approach,
 
