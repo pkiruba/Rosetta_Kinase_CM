@@ -24,7 +24,7 @@ Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approa
 python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp_lig /Users/kiruba/Desktop/rosetta_kinase_cm/template_ligand_library
 ```
 
-## Output folder should contain these files
+## Output folder should contain similar files after running the above command
 
 ```
 2W1C_A_L0C
@@ -47,6 +47,29 @@ python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp
 * Second, selection of top hit templates will be applied using sequence and ligand similarity approach (defined as Template Score). Based on this approach, the top 10 templates for the given sequence will be selected.
 * Third, 10 predicted models of target protein will be performed using PyRosetta.
 * Forth, using the top first model we concatenate the 100 conformers from ligand alignment and this results into an unrefined protein-ligand complex of 100 comparative models.
+```
+python new_protein_modeling.py -f ~/Desktop/2W1C_A_L0C -emboss /usr/local/emboss/bin/needle -temp_seq ~/Desktop/rosetta_kinase_cm/template_fasta_seq_training_set -apo_pdb ~/Desktop/rosetta_kinase_cm/apo_pdbs_for_template_seq_extraction
+```
+
+## Output folder should contain similar files after running the above command
+```
+2W1C_A_L0C
+├── 2W1C_A.fasta
+├── 2W1C_A_L0C.pdb
+├── L0C.smi
+├── OMEGA
+│   ├── L0C_omega.log
+│   ├── L0C_omega.parm
+│   ├── L0C_omega.rpt
+│   ├── L0C_omega.sdf
+│   └── L0C_omega_status.txt
+├── ROCS [7787 entries exceeds filelimit, not opening dir]
+├── mol2params [200 entries exceeds filelimit, not opening dir]
+├── protein_comp_modeling [13 entries exceeds filelimit, not opening dir]
+├── protein_ligand_complex_top_1_comp_model [100 entries exceeds filelimit, not opening dir]
+└── top_100_conf [200 entries exceeds filelimit, not opening dir]
+```
+
 ## 3. Minimization of protein-ligand complex (minimization.py)
 * First, the input files for Rosettaminimization process will be generated for parallel computing.
 * Second, once minimization finished, the energy for each model will be calculated similarly to the first step.

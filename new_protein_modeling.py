@@ -217,21 +217,21 @@ def protein_ligand_concatenation(template_hits, target_fasta_file, ligands):
 currentWD = os.getcwd()
 os.chdir(args['folder'])
 
-# os.makedirs("protein_comp_modeling/protein_seq_alignment_files")
-# emboss_needle_search(emboss_needle, glob.glob('*.fasta')[0], tempate_seqs)
+os.makedirs("protein_comp_modeling/protein_seq_alignment_files")
+emboss_needle_search(emboss_needle, glob.glob('*.fasta')[0], tempate_seqs)
 
-# emboss_alignments = glob.glob(
-#     'protein_comp_modeling/protein_seq_alignment_files/*.needle')
-# rocs_single_rpt = 'ROCS/single_report_file_sorted.csv'
-# select_top_hits_from_emboss_and_rocs_pdb(
-#     emboss_alignments, rocs_single_rpt, glob.glob('*.fasta')[0])
+emboss_alignments = glob.glob(
+    'protein_comp_modeling/protein_seq_alignment_files/*.needle')
+rocs_single_rpt = 'ROCS/single_report_file_sorted.csv'
+select_top_hits_from_emboss_and_rocs_pdb(
+    emboss_alignments, rocs_single_rpt, glob.glob('*.fasta')[0])
 
 template_hits = 'protein_comp_modeling/template_hits.csv'
-# seq_alin_file = 'protein_comp_modeling/protein_seq_alignment_files/'
-# modeling(template_hits, apo_pdbs, seq_alin_file, glob.glob('*.fasta')[0])
+seq_alin_file = 'protein_comp_modeling/protein_seq_alignment_files/'
+modeling(template_hits, apo_pdbs, seq_alin_file, glob.glob('*.fasta')[0])
 
 os.mkdir("protein_ligand_complex_top_1_comp_model")
 protein_ligand_concatenation(template_hits, glob.glob(
-    "*.fasta")[0], glob.glob("sdf2params/*.pdb"))
+    "*.fasta")[0], glob.glob("mol2params/*.pdb"))
 
 os.chdir(currentWD)
