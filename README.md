@@ -1,9 +1,9 @@
 # Rosetta Kinase CM
 
-<figure class="image">
+<!-- <figure class="image">
   <img src="pipeline.png">
   <figcaption>Figure: Overview of Rosetta Kinase CM pipeline</figcaption>
-</figure>
+</figure> -->
 
 ## Dependency
 * Tested with [Python 3.7](https://www.python.org/downloads/) (Pandas) 
