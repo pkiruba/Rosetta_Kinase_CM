@@ -19,7 +19,7 @@ Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approa
 * Second, the single SDF file will be used for the alignment of a query (Molecule of interest) and database (in-house active kinase ligand template library) molecules using ROCS. The output will be each template aligned query molecule.
 * Third, combining the report files of each template aligned query molecule into a single report file.
 * Fourth, based on the single report file, the top 100 conformers for the given SMILES are selected.
-* Fifth, SDF to PARAMSwill be generated using 100 conformers for Rosetta Minimization step. 
+* Fifth, SDF to PARAMS will be generated using 100 conformers for Rosetta Minimization step. 
 ```
 python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp_lig /Users/kiruba/Desktop/rosetta_kinase_cm/template_ligand_library
 ```
@@ -71,7 +71,7 @@ python new_protein_modeling.py -f ~/Desktop/2W1C_A_L0C -emboss /usr/local/emboss
 ```
 
 ## 3. Minimization of protein-ligand complex (minimization.py)
-* First, the input files for Rosettaminimization process will be generated for parallel computing.
+* First, the input files for Rosetta minimization process will be generated for parallel computing.
 * Second, once minimization finished, the energy for each model will be calculated similarly to the first step.
 ## 4. Analysis (analysis_1.py)
 * Here, I will generate the table for 100 minimized structures. It contains the name and energy attributes of those models. Out of 100, the top 10 models will be selected using Rosetta energy values.
