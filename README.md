@@ -21,7 +21,7 @@ Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approa
 * Fourth, based on the single report file, the top 100 conformers for the given SMILES are selected.
 * Fifth, SDF to PARAMS will be generated using 100 conformers for Rosetta Minimization step. 
 ```
-python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp_lig /Users/kiruba/Desktop/rosetta_kinase_cm/template_ligand_library
+python modeling_script.py -f /path/to/2W1C_A_L0C -omega /path/to/omega2 -rocs /path/to/rocs -temp_lig /path/to/rosetta_kinase_cm/template_ligand_library -mol2params /path/to/Rosetta/main/source/scripts/python/public/generic_potential/mol2genparams.py
 ```
 
 ## Output folder should contain similar files after running the above command
@@ -48,7 +48,7 @@ python modeling_script.py -f ~/Desktop/2W1C_A_L0C -omega omega2 -rocs rocs -temp
 * Third, 10 predicted models of target protein will be performed using PyRosetta.
 * Forth, using the top first model we concatenate the 100 conformers from ligand alignment and this results into an unrefined protein-ligand complex of 100 comparative models.
 ```
-python new_protein_modeling.py -f ~/Desktop/2W1C_A_L0C -emboss /usr/local/emboss/bin/needle -temp_seq ~/Desktop/rosetta_kinase_cm/template_fasta_seq_training_set -apo_pdb ~/Desktop/rosetta_kinase_cm/apo_pdbs_for_template_seq_extraction
+python new_protein_modeling.py -f /path/to/2W1C_A_L0C -emboss /path/to/usr/local/emboss/bin/needle -temp_seq /path/to/rosetta_kinase_cm/template_fasta_seq_training_set -apo_pdb /path/to/rosetta_kinase_cm/apo_pdbs_for_template_seq_extraction
 ```
 
 ## Output folder should contain similar files after running the above command

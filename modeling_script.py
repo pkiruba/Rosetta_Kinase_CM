@@ -13,13 +13,15 @@ ap.add_argument("-rocs", "--rocs_path", required=True,
                 help="Enter the ROCS path")
 ap.add_argument("-temp_lig", "--template_ligand_path", required=True,
                 help="Enter the template ligand PDB path")
+ap.add_argument("-mol2params", "--mol2params_path", required=True,
+                help="Enter the Rosetta mol2params file path")
 args = vars(ap.parse_args())
 
 
 OMEGA = args["omega_path"]
 ROCS = args["rocs_path"]
 template_lig_library = glob.glob(f"{args['template_ligand_path']}/*.pdb")
-mol2params = "/Users/kiruba/miniconda3/bin/python /Users/kiruba/Rosetta/main/source/scripts/python/public/generic_potential/mol2genparams.py"
+mol2params = f"python {args['mol2params_path']}"
 
 # Conformer generation using OMEGA openeye (added new flag for resolving the missing MMFF parameters in ligand using -strictatomtyping false)
 
