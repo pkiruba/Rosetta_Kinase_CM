@@ -21,7 +21,7 @@ Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approa
 * Fourth, based on the single report file, the top 100 conformers for the given SMILES are selected.
 * Fifth, SDF to PARAMS will be generated using 100 conformers for Rosetta Minimization step. 
 ```
-python modeling_script.py -f /path/to/2W1C_A_L0C -omega /path/to/omega2 -rocs /path/to/rocs -temp_lig /path/to/rosetta_kinase_cm/template_ligand_library -mol2params /path/to/Rosetta/main/source/scripts/python/public/generic_potential/mol2genparams.py
+python /path/to/Rosetta_Kinase_CM/modeling_script.py -f /path/to/2W1C_A_L0C -omega /path/to/omega2 -rocs /path/to/rocs -temp_lig /path/to/Rosetta_Kinase_CM/template_ligand_library -mol2params /path/to/Rosetta/main/source/scripts/python/public/generic_potential/mol2genparams.py -convert /path/to/Rosetta_Kinase_CM/convert.py
 ```
 
 ## Output folder should contain similar files after running the above command

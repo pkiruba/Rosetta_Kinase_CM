@@ -15,6 +15,8 @@ ap.add_argument("-temp_lig", "--template_ligand_path", required=True,
                 help="Enter the template ligand PDB path")
 ap.add_argument("-mol2params", "--mol2params_path", required=True,
                 help="Enter the Rosetta mol2params file path")
+ap.add_argument("-convert", "--convert_path", required=True,
+                help="Convert SDF to mol2 using openeye script")
 args = vars(ap.parse_args())
 
 
@@ -22,6 +24,7 @@ OMEGA = args["omega_path"]
 ROCS = args["rocs_path"]
 template_lig_library = glob.glob(f"{args['template_ligand_path']}/*.pdb")
 mol2params = f"python {args['mol2params_path']}"
+convert_py = args["convert_path"]
 
 # Conformer generation using OMEGA openeye (added new flag for resolving the missing MMFF parameters in ligand using -strictatomtyping false)
 
@@ -103,14 +106,12 @@ def sep_hits_from_rocs_sdf_file(top_100_hits_txt_path):
 # Convert SDF file to PDB/PARAMS for Rosetta input
 
 
-def sdftomol2(mol2params, top_hits_sdf_path):
+def sdftomol2(mol2params, top_hits_sdf_path, convert_py):
 
     for file in top_hits_sdf_path:
         out_put_file_name = os.path.splitext(os.path.basename(file))[0]
-        print('/Users/kiruba/miniconda3/bin/python /Users/kiruba/Desktop/rosetta_kinase_cm/convert.py {0} {1}/top_100_conf/{2}.mol2'.format(
-            file, os.getcwd(), out_put_file_name))
-        os.system('/Users/kiruba/miniconda3/bin/python /Users/kiruba/Desktop/rosetta_kinase_cm/convert.py {0} {1}/top_100_conf/{2}.mol2'.format(
-            file, os.getcwd(), out_put_file_name))
+        print('python {0} {1} {2}/top_100_conf/{3}.mol2'.format(convert_py, file, os.getcwd(), out_put_file_name))
+        os.system('python {0} {1} {2}/top_100_conf/{3}.mol2'.format(convert_py, file, os.getcwd(), out_put_file_name))
 
         print('{0} -s {1}.mol2 --prefix=mol2params/{2}'.format(mol2params,
                                                                file.split(".")[0], out_put_file_name))
@@ -134,7 +135,8 @@ os.mkdir("top_100_conf")
 sep_hits_from_rocs_sdf_file("ROCS/top_100.txt")
 
 os.mkdir("mol2params")
-sdftomol2(mol2params, glob.glob("top_100_conf/*.sdf"))
-os.system("mv *hits_0001.pdb mol2params")
-os.system("mv *hits.params mol2params")
+sdftomol2(mol2params, glob.glob("top_100_conf/*.sdf"), convert_py)
+if not os.listdir("mol2params"):
+    os.system("mv *hits_0001.pdb mol2params")
+    os.system("mv *hits.params mol2params")
 os.chdir(currentWD)
