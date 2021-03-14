@@ -12,15 +12,13 @@
 * [OpenEye](https://www.eyesopen.com/) Software Suite
 * [EMBOSS](http://emboss.open-bio.org/html/use/ch02s07.html) Software Suite
 
-Initial folder and the files requeire for modeling kinase::inhibitor complex,
+Initial folder should contain these three files and similar naming convention,
 
 ```
-
 2W1C_A_L0C
 ├── 2W1C_A.fasta
 ├── 2W1C_A_L0C.pdb
 └── L0C.smi
-
 ```
 Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approach,
 
