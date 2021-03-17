@@ -1,18 +1,18 @@
 # Rosetta Kinase CM
+This repository is for our project <b><i>Comparative Modeling Pipeline of Protein Kinase Inhibitors</i></b>. 
 
-<!-- <figure class="image">
+
+<figure class="image">
   <img src="pipeline.png">
-  <figcaption>Figure: Overview of Rosetta Kinase CM pipeline</figcaption>
-</figure> -->
+  <figcaption>Figure: Overview of Comparative Modeling Pipeline</figcaption>
+</figure>
 
-## Dependency
-* Tested with [Python 3.7](https://www.python.org/downloads/) (Pandas) 
+## Dependencies
+* [Python 3.7](https://www.python.org/downloads/) (Pandas) 
 * [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite 
 * [PyRosetta](http://www.pyrosetta.org/) Software Suite
 * [OpenEye](https://www.eyesopen.com/) Software Suite
 * [EMBOSS](http://emboss.open-bio.org/html/use/ch02s07.html) Software Suite
-
-Initial folder should contain these three files and similar naming convention,
 
 ```
 2W1C_A_L0C
@@ -20,19 +20,32 @@ Initial folder should contain these three files and similar naming convention,
 ├── 2W1C_A_L0C.pdb
 └── L0C.smi
 ```
-Here are the STEPS and SCRIPTS used for the comparative modeling pipeline approach,
 
-## 1. Conformer generation and ligand alignment (modeling_script.py)
-* First, the maximum number of conformers will be generated for a given SMILES using OMEGA. The output will be a single SDF file with the maximum number of conformers.
-* Second, the single SDF file will be used for the alignment of a query (Molecule of interest) and database (in-house active kinase ligand template library) molecules using ROCS. The output will be each template aligned query molecule.
-* Third, combining the report files of each template aligned query molecule into a single report file.
-* Fourth, based on the single report file, the top 100 conformers for the given SMILES are selected.
-* Fifth, SDF to PARAMS will be generated using 100 conformers for Rosetta Minimization step. 
-```
-python /path/to/Rosetta_Kinase_CM/modeling_script.py -f /path/to/2W1C_A_L0C -omega /path/to/omega2 -rocs /path/to/rocs -temp_lig /path/to/Rosetta_Kinase_CM/template_ligand_library -mol2params /path/to/Rosetta/main/source/scripts/python/public/generic_potential/mol2genparams.py -convert /path/to/Rosetta_Kinase_CM/convert.py
-```
 
-## Output folder should contain similar files after running the above command
+The initial folder should contain three files and following the naming convention
+- ```2W1C_A_L0C.fasta``` is the FASTA protein file for the kinase 2W1C
+- ```2W1C_A_L0C.pdb``` is the PDB structure of 2W1C in complex with the L0C ligand or an empty file with the ```.pdb``` extension. 
+- ```L0C.smi``` is the SMILES string for the L0C ligand
+
+
+## 1. Conformer generation and ligand alignment with ```modeling_script.py```
+* This script generates conformers, aligns conformers with a template, and selects the top 100 conformers for Rosetta minimization.
+
+An example command is below:
+```
+/work/07424/gabeong/stampede2/anaconda3/bin/python /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/modeling_script.py -f /work/07424/gabeong/stampede2/2W1C_A_L0C/ -omega /work/07424/gabeong/stampede2/openeye/bin/omega2 -rocs /work/07424/gabeong/stampede2/openeye/bin/rocs -temp_lig /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/template_ligand_library -mol2params /work/07424/gabeong/stampede2/Rosetta/main/source/scripts/python/public/generic_potential/mol2genparams.py -convert /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/convert.py
+```
+where
+- ```/work/07424/gabeong/stampede2/anaconda3/bin/python``` is the filepath to the local python installation.
+- ```/work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/modeling_script.py``` is the filepath to the modeling script.
+- To ```-f``` add the filepath to the folder described above. 
+- To ```-omega``` add the filepath to the local installation of OpenEye Omega.
+- To ```-rocs``` add the filepath to the local installation of ROCS.
+- To ```-temp_lig``` add the filepath to the template ligand library. 
+- To ```-mol2params``` add the filepath to the ```mol2genparams.py``` script in Rosetta.
+- To ```-convert``` add the filepath to the ```convert.py``` script in this repository. 
+
+## Output folder should contain the following files after running  ```modeling_script.py```
 
 ```
 2W1C_A_L0C
@@ -50,16 +63,14 @@ python /path/to/Rosetta_Kinase_CM/modeling_script.py -f /path/to/2W1C_A_L0C -ome
 └── top_100_conf [200 entries exceeds filelimit, not opening dir]
 ```
 
-## 2. Sequence alignment and protein modeling (new_protein_modeling.py)
-* First, target-template sequence alignment will be performed using in-house active kinase sequence template library (EMBOSS Needleman-Wunsch algorithm)
-* Second, selection of top hit templates will be applied using sequence and ligand similarity approach (defined as Template Score). Based on this approach, the top 10 templates for the given sequence will be selected.
-* Third, 10 predicted models of target protein will be performed using PyRosetta.
-* Forth, using the top first model we concatenate the 100 conformers from ligand alignment and this results into an unrefined protein-ligand complex of 100 comparative models.
+## 2. Sequence alignment and protein modeling with ```new_protein_modeling.py```
+* This script conducts target-template sequence alignment, selects top templates, and minimizes the top 10 predicted models with PyRosetta.  
+* Using the best model we concatenate the 100 conformers from the ligand alignment step, resulting in an unrefined protein-ligand complex of 100 comparative models.
 ```
-python new_protein_modeling.py -f /path/to/2W1C_A_L0C -emboss /path/to/usr/local/emboss/bin/needle -temp_seq /path/to/rosetta_kinase_cm/template_fasta_seq_training_set -apo_pdb /path/to/rosetta_kinase_cm/apo_pdbs_for_template_seq_extraction
+/work/07424/gabeong/stampede2/anaconda3/bin/python /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/modeling_script.py -f /work/07424/gabeong/stampede2/2W1C_A_L0C/ -emboss /work/07424/gabeong/stampede2/emboss/bin/needle -temp_seq /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/template_fasta_seq_training_set -apo_pdb /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/apo_pdbs_for_template_seq_extraction
 ```
 
-## Output folder should contain similar files after running the above command
+## Output folder should contain the following files after running ```new_protein_modeling.py```
 ```
 2W1C_A_L0C
 ├── 2W1C_A.fasta
