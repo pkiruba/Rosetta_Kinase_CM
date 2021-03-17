@@ -4,7 +4,7 @@ This repository is for our project <b><i>Comparative Modeling Pipeline of Protei
 
 <figure class="image">
   <img src="pipeline.png">
-  <figcaption>Figure: Overview of KinBADL pipeline</figcaption>
+  <figcaption>Figure: Overview of Comparative Modeling Pipeline</figcaption>
 </figure>
 
 ## Dependencies
@@ -24,7 +24,7 @@ This repository is for our project <b><i>Comparative Modeling Pipeline of Protei
 
 The initial folder should contain three files and following the naming convention
 - ```2W1C_A_L0C.fasta``` is the FASTA protein file for the kinase 2W1C
-- ```2W1C_A_L0C.pdb``` is the PDB structure of 2W1C in complex with the L0C ligand
+- ```2W1C_A_L0C.pdb``` is the PDB structure of 2W1C in complex with the L0C ligand or an empty file with the ```.pdb``` extension. 
 - ```L0C.smi``` is the SMILES string for the L0C ligand
 
 
