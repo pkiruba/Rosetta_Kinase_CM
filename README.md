@@ -67,7 +67,7 @@ where
 * This script conducts target-template sequence alignment, selects top templates, and minimizes the top 10 predicted models with PyRosetta.  
 * Using the best model we concatenate the 100 conformers from the ligand alignment step, resulting in an unrefined protein-ligand complex of 100 comparative models.
 ```
-/work/07424/gabeong/stampede2/anaconda3/bin/python /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/modeling_script.py -f /work/07424/gabeong/stampede2/2W1C_A_L0C/ -emboss /work/07424/gabeong/stampede2/emboss/bin/needle -temp_seq /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/template_fasta_seq_training_set -apo_pdb /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/apo_pdbs_for_template_seq_extraction
+/work/07424/gabeong/stampede2/anaconda3/bin/python /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/new_protein_modeling.py -f /work/07424/gabeong/stampede2/2W1C_A_L0C/ -emboss /work/07424/gabeong/stampede2/emboss/bin/needle -temp_seq /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/template_fasta_seq_training_set -apo_pdb /work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/apo_pdbs_for_template_seq_extraction
 ```
 
 ## Output folder should contain the following files after running ```new_protein_modeling.py```
