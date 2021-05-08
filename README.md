@@ -90,8 +90,11 @@ where
 ```
 
 ## 3. Minimization of protein-ligand complex (minimization.py)
-* First, the input files for Rosetta minimization process will be generated for parallel computing.
-* Second, once minimization finished, the energy for each model will be calculated similarly to the first step.
+* This script generates commands for parallelizing the two-step minimization.
+* Minimization is performed against KLIFS residues, an 85 residue representation of the ATP binding site. 
+```
+/work/07424/gabeong/stampede2/anaconda3/bin/python work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/minimization_script.py -f 2W1C_A_L0C -ma work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/minimize_ppi_res_of_interest.py -rf work/07424/gabeong/stampede2/rosetta_cm/Rosetta_Kinase_CM/klifs_only_uniprot_resnum
+```
 ## 4. Analysis (analysis_1.py)
 * Here, I will generate the table for 100 minimized structures. It contains the name and energy attributes of those models. Out of 100, the top 10 models will be selected using Rosetta energy values.
 ## 5. Complex modeling of remaining protein models (top_comp_prtn_lig_modeling.py) (from step 2, third point)
